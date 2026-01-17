@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedCube Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">SpeedCube</h1>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('timer')" class="nav-link active">Timer</a></li>
+                <li><a href="#" onclick="showPage('account')" class="nav-link">Account</a></li>
+                <li><a href="#" onclick="showPage('contact')" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Timer Page -->
+    <div id="timerPage" class="page active">
+        <div class="container">
+            <div class="settings-panel">
+                <h2>Settings</h2>
+                <label class="setting-item">
+                    <input type="checkbox" id="wcaInspection" checked>
+                    <span>WCA 15-second Inspection</span>
+                </label>
+            </div>
+
+            <div class="timer-section">
+                <div class="scramble-box">
+                    <h3>Scramble</h3>
+                    <p id="scramble" class="scramble-text">R U R' U' R' F R2 U' R' U' R U R' F'</p>
+                    <button id="newScrambleBtn" class="btn-secondary">New Scramble</button>
+                </div>
+
+                <div class="timer-box">
+                    <div class="timer-display">
+                        <span id="timerDisplay" class="timer-text">0.00</span>
+                    </div>
+                    <p class="timer-hint" id="timerHint">Hold spacebar to start (0.3s to ready)</p>
+                    <p class="timer-status" id="timerStatus"></p>
+                </div>
+
+                <div class="stats-box">
+                    <h3>Session Stats</h3>
+                    <div class="stat-item">
+                        <span>Best:</span>
+                        <span id="bestTime">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Worst:</span>
+                        <span id="worstTime">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Ao5:</span>
+                        <span id="ao5">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Solves:</span>
+                        <span id="solveCount">0</span>
+                    </div>
+                </div>
+
+                <div class="times-history">
+                    <h3>Times</h3>
+                    <div id="timesList" class="times-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Page -->
+    <div id="accountPage" class="page">
+        <div class="container">
+            <div class="auth-container" id="authContainer">
+                <div class="auth-box" id="loginBox">
+                    <h2>Login</h2>
+                    <form id="loginForm">
+                        <input type="email" placeholder="Email" required>
+                        <input type="password" placeholder="Password" required>
+                        <button type="submit" class="btn-primary">Login</button>
+                    </form>
+                    <p>Don't have an account? <a href="#" onclick="toggleAuthForm(event)">Sign up</a></p>
+                </div>
+
+                <div class="auth-box" id="signupBox" style="display: none;">
+                    <h2>Sign Up</h2>
+                    <form id="signupForm">
+                        <input type="text" placeholder="Username" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="password" placeholder="Password" required>
+                        <input type="password" placeholder="Confirm Password" required>
+                        <button type="submit" class="btn-primary">Sign Up</button>
+                    </form>
+                    <p>Already have an account? <a href="#" onclick="toggleAuthForm(event)">Login</a></p>
+                </div>
+            </div>
+
+            <div class="profile-container" id="profileContainer" style="display: none;">
+                <div class="profile-header">
+                    <h2 id="username"></h2>
+                    <button class="btn-secondary" onclick="logout()">Logout</button>
+                </div>
+
+                <div class="stats-container">
+                    <h3>Your Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-label">Personal Best</span>
+                            <span class="stat-value" id="userBest">--</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Total Solves</span>
+                            <span class="stat-value" id="userTotalSolves">0</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Average of 5</span>
+                            <span class="stat-value" id="userAo5">--</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Average of 12</span>
+                            <span class="stat-value" id="userAo12">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-solves">
+                    <h3>Recent Solves</h3>
+                    <div id="userTimesList" class="times-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contactPage" class="page">
+        <div class="container">
+            <div class="contact-box">
+                <h2>Contact Us</h2>
+                <p class="contact-intro">Have feedback or issues? Send us a message!</p>
+                
+                <form id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea placeholder="Message" rows="6" required></textarea>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+
+                <div id="contactMessage" class="contact-message" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
